@@ -14,9 +14,9 @@
         <TextBlock TextWrapping="Wrap" Text="GIFTSTORE" Height="55" Width="184" FontSize="22" FontWeight="Bold" FontFamily="Arial Black" Margin="28,27,280,572"/>
         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Width="1232" Margin="-1,65,0,0" Grid.ColumnSpan="2" >
             <TextBlock TextWrapping="Wrap"  Text="Gift for              :" Height="71" Width="127" HorizontalAlignment="Left" FontSize="16" Padding="0,20,0,0" Margin="130,0,0,0"/>
-            <ComboBox x:Name="giftForcombo"  ItemsSource="{Binding giftForCategory}" Width="278" Height="29" Padding="0,0,0,0"/>
+            <ComboBox x:Name="giftForcombo"  ItemsSource="{Binding giftForCategory}" SelectionChanged="giftForSelected" Width="278" Height="29" Padding="0,0,0,0"/>
             <TextBlock TextWrapping="Wrap" Text="Ocassion           :" Grid.Column="2" Height="69" Width="127" HorizontalAlignment="Left" FontSize="16" Padding="0,20,0,0" Margin="80,0,0,0"/>
-            <ComboBox x:Name="ocassioncombo"  ItemsSource="{Binding giftForCategory}" Width="278" Height="29" Padding="0,0,0,0"/>
+            <ComboBox x:Name="ocassioncombo"  ItemsSource="{Binding giftForCategory}" SelectionChanged="giftForSelected" Width="278" Height="29" Padding="0,0,0,0"/>
         </WrapPanel>
         <Grid Margin="1,96,-1,0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
@@ -35,12 +35,12 @@
                                 <DataTemplate>
                                     <Border Margin="10" Width="170" Height="200">
                                         <StackPanel>
-                                            <Border Width="160" Height="150" CornerRadius="5" Margin="5">
+                                            <Border Cursor="Hand"  Width="160" Height="150" CornerRadius="5" Margin="5">
                                                 <Border.Effect>
                                                     <DropShadowEffect ShadowDepth="1"/>
                                                 </Border.Effect>
-                                                <Border.Background>
-                                                    <ImageBrush ImageSource="{Binding Image}"/>
+                                                <Border.Background >
+                                                    <ImageBrush  ImageSource="{Binding Image}"/>
                                                 </Border.Background>
                                             </Border>
                                             <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="16"/>
