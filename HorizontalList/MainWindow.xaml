@@ -4,49 +4,76 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HorizontalList"
+        xmlns:resx ="clr-namespace:HorizontalList.Resources"
         mc:Ignorable="d"
-        Title="GiftStore" Height="720" Width="1280" Background="#FF558DAC">
+        Loaded="Window_Loaded"
+        Title="GiftStore" Height="700" Width="1320
+" Background="#FF558DAC">
     <Grid Margin="25,25,25,25">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock TextWrapping="Wrap" Text="GIFTSTORE" Height="55" Width="184" FontSize="22" FontWeight="Bold" FontFamily="Arial Black" Margin="28,27,280,572"/>
-        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Width="1232" Margin="-1,65,0,0" Grid.ColumnSpan="2" >
-            <TextBlock TextWrapping="Wrap"  Text="Gift for              :" Height="71" Width="127" HorizontalAlignment="Left" FontSize="16" Padding="0,20,0,0" Margin="130,0,0,0"/>
-            <ComboBox x:Name="giftForcombo"  ItemsSource="{Binding giftForCategory}" SelectionChanged="giftForSelected" Width="278" Height="29" Padding="0,0,0,0"/>
-            <TextBlock TextWrapping="Wrap" Text="Ocassion           :" Grid.Column="2" Height="69" Width="127" HorizontalAlignment="Left" FontSize="16" Padding="0,20,0,0" Margin="80,0,0,0"/>
-            <ComboBox x:Name="ocassioncombo"  ItemsSource="{Binding giftForCategory}" SelectionChanged="giftForSelected" Width="278" Height="29" Padding="0,0,0,0"/>
+        <WrapPanel Orientation="Horizontal" Margin="11,-15,-1,607" Grid.ColumnSpan="4">
+            <TextBlock TextWrapping="Wrap" Text="Buy Products" FontSize="22" FontWeight="Bold" FontFamily="Arial Black" Margin="10,-4,0,0" Height="34"/>
+            <ComboBox ItemsSource="{Binding languageOptions}" SelectedIndex="0" Cursor="Hand" SelectionChanged="ChangeLanguage" Width="100" FontSize="16" Margin="1135,-25,0,0" Padding="10,2,0,0"  Height="29" HorizontalAlignment="Right"/>
         </WrapPanel>
-        <Grid Margin="1,96,-1,0" Grid.ColumnSpan="2">
+        <Line X1="0" Y1="10"  X2="1920" Y2="10" Stroke="Black" StrokeThickness="1" Margin="-25,14,-25,-14" Grid.ColumnSpan="4" />
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Width="1271" Margin="0,27,0,0" Grid.ColumnSpan="4" Height="49" >
+            <TextBlock TextWrapping="Wrap"  Text="{x:Static resx:Resource.TXT_GIftFor}" Height="49" Width="80" HorizontalAlignment="Center" FontSize="16" Padding="20,13,0,0" FontWeight="Bold"/>
+            <ComboBox ItemsSource="{Binding giftForCategory}" Cursor="Hand" SelectionChanged="giftForSelected" FontSize="16" Width="151" Height="29"  Padding="10,2,0,0"/>
+            <TextBlock TextWrapping="Wrap" Text="{x:Static resx:Resource.TXT_Ocassion}" FontWeight="Bold" Grid.Column="2" Height="39" Width="70" HorizontalAlignment="Left" FontSize="16" Padding="0,8,0,0" Margin="20,0,0,0"/>
+            <ComboBox Name="CBx_OcassionCategory" ItemsSource="{Binding ocassionCategory}"  SelectionChanged="giftSearch" FontSize="16" Width="127" Height="29"  Padding="10,2,0,0" IsEnabled="False"/>
+            <TextBlock TextWrapping="Wrap" Text="{x:Static resx:Resource.TXT_SortBy}"  FontWeight="Bold" Width="70" HorizontalAlignment="Left" FontSize="16" Padding="0,8,0,0" Margin="263,6,0,0" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <ComboBox ItemsSource="{Binding sortBy}" Cursor="Hand" SelectionChanged="SortByPrice" Width="127" FontSize="16" Height="29"  Padding="10,2,0,0"/>
+        </WrapPanel>
+        <Grid Margin="1,96,-1,0" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="170"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="721*"/>
+                <ColumnDefinition Width="379*"/>
+                <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Row="1" Background="#FFF1F1F1" Grid.ColumnSpan="2">
-                <StackPanel>
-                    <StackPanel Margin="20 0">
+            <ScrollViewer Background="#FFF1F1F1" Grid.ColumnSpan="3" Margin="10,-14,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" Width="897">
+                <StackPanel Width="1000">
+                    <StackPanel>
                         <ItemsControl x:Name="ListViewProducts" ItemsSource="{Binding Product}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Margin="10" Width="170" Height="200">
-                                        <StackPanel>
-                                            <Border Cursor="Hand"  Width="160" Height="150" CornerRadius="5" Margin="5">
-                                                <Border.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </Border.Effect>
-                                                <Border.Background >
-                                                    <ImageBrush  ImageSource="{Binding Image}"/>
-                                                </Border.Background>
+                                    <Expander ScrollViewer.HorizontalScrollBarVisibility="Hidden" ExpandDirection="Right" Cursor="Hand" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                                        <Expander.Header>
+                                            <Border Margin="10" Width="195" Height="210">
+                                                <StackPanel>
+                                                    <Border Cursor="Hand"  Width="190" Height="170" CornerRadius="5" Margin="5">
+                                                        <Border.Effect>
+                                                            <DropShadowEffect ShadowDepth="1"/>
+                                                        </Border.Effect>
+                                                        <Border.Background >
+                                                            <ImageBrush  ImageSource="{Binding ImagePath}"/>
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="12"/>
+                                                    <TextBlock Margin="2" Text="{Binding Value, ConverterCulture=nl-BE, StringFormat=C}"  FontSize="11"/>
+                                                </StackPanel>
                                             </Border>
-                                            <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="16"/>
-                                            <TextBlock Margin="2" Text="{Binding Value, StringFormat=C, ConverterCulture=nl-BE}"  FontSize="15"/>
-                                        </StackPanel>
-                                    </Border>
+                                        </Expander.Header>
+                                        <Expander.Content>
+                                            <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top"  Height="215" Orientation="Horizontal" Width="220" >
+                                                <ScrollViewer    Height="140" Margin="20,40,0,0" >
+                                                    <TextBlock Width="180" TextWrapping="Wrap" Text="{Binding Description}"/>
+                                                </ScrollViewer>
+                                                <WrapPanel>
+                                                    <Button Content="Add To Cart" x:Name="AddCart" Width="80" Tag="{Binding ID}" Click="AddItemToCart" Padding="0,0,0,0" Height="30" Margin="20,5,0,0" ></Button>
+                                                </WrapPanel>
+                                            </WrapPanel>
+                                        </Expander.Content>
+                                    </Expander>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.ItemsPanel>
@@ -58,7 +85,56 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
+
         </Grid>
+        <StackPanel Grid.Column="2" Margin="410,81,10,-81" Grid.ColumnSpan="2">
+            <ScrollViewer  Background="#FFF1F1F1" RenderTransformOrigin="0.629,0.5"  Height="470" Width="337">
+                <StackPanel Margin="0,10,0,0" Width="315">
+                    <TextBlock Width="80" TextWrapping="Wrap" Text="CART" FontSize="24" FontWeight="Bold"/>
+                    <Line X1="0" Y1="10"  X2="390" Y2="10" Stroke="Black" StrokeThickness="1" Height="11" />
+                    <StackPanel>
+                        <WrapPanel>
+                            <ItemsControl x:Name="CartProducts" ItemsSource="{Binding AddedProduct}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="10" Width="560" Height="100">
+                                            <WrapPanel>
+                                                <StackPanel>
+                                                    <Border Cursor="Hand"  Width="90" Height="70" CornerRadius="5" Margin="5">
+                                                        <Border.Effect>
+                                                            <DropShadowEffect ShadowDepth="1"/>
+                                                        </Border.Effect>
+                                                        <Border.Background >
+                                                            <ImageBrush  ImageSource="{Binding Image}"/>
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <TextBlock TextWrapping="Wrap"  Width="70" Margin="5 0" Text="{Binding Name}" FontSize="12"/>
+                                                </StackPanel>
+                                                <ComboBox x:Name="ocassioncombo" Tag="{Binding ID}" SelectedValue="{Binding SelectedItemCount}" ItemsSource="{Binding ItemCountList}" Cursor="Hand" SelectionChanged="NoOfProductsSelected" Width="60" Height="29" Margin="20,0,0,0"/>
+                                                <TextBlock  Text="{Binding Value, ConverterCulture=nl-BE, StringFormat=C}"  Margin="20,38,0,0" FontSize="14"/>
+                                                <Button Content="X" x:Name="RemoveItem" Tag="{Binding ID}" Click="RemoveItemFromCart" Width="20" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  Padding="0,0,0,0" Height="30" Margin="20,0,0,0" Foreground="Red" />
+
+                                            </WrapPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </WrapPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <WrapPanel Height="58" Width="337" Background="#FFF1F1F1" Margin="0,5,0,0">
+                <Button Margin="30,15,0,0" Click="PlaceOrder" Cursor="Hand" Content="Buy" FontSize="14" Padding="15,5,15,5"/>
+                <TextBlock Margin="30,20,0,0" FontSize="16"><Run Text="Total Amount : € "/></TextBlock>
+                <TextBlock x:Name="totalAmountText"  Margin="0,20,0,0" FontSize="16"><Run /></TextBlock>
+            </WrapPanel>
+        </StackPanel>
     </Grid>
+
 
 </Window>

@@ -10,11 +10,20 @@ namespace ComboBoxWPF
     public class ComboBoxViewModel
     {
         public List<string> giftForCategory { get; set; }
-        public List<string> ocassionCategory1 { get; set; }
+        public List<string> ocassionCategory { get; set; }
+        public List<string> sortBy { get; set; }
+        public List<int> itemCount { get; set; }
+        public List<string> languageOptions { get; set; }
         public ComboBoxViewModel()
         {
+            languageOptions = new List<string>
+            {
+                "EN",
+                "DE"
+            };
             giftForCategory = new List<string>
             {
+                "Show All",
                 "Him",
                 "Her",
                 "Teen -> boy",
@@ -24,22 +33,36 @@ namespace ComboBoxWPF
                 "Baby -> boy",
                 "Baby -> girl"
             };
-            ocassionCategory1 = new List<string>
+            ocassionCategory = new List<string>
             {
-                "Him",
-                "Her",
-                "Teen -> boy",
-                "Teen -> girl",
-                "Kids -> boy",
-                "Kids -> girl",
-                "Baby -> boy",
-                "Baby -> girl"
+            };
+            sortBy = new List<string>
+            {
+                "Price -> Low",
+                "Price -> High"
+            };
+            itemCount = new List<int>
+            {
             };
         }
         public ComboBoxViewModel(string obj)
         {
+            languageOptions = new List<string>
+            {
+                "EN",
+                "DE"
+            };
+            itemCount = new List<int>
+            {
+            };
+            sortBy = new List<string>
+            {
+                "Price -> Low",
+                "Price -> High"
+            };
             giftForCategory = new List<string>
             {
+                "Show All",
                 "Him",
                 "Her",
                 "Teen -> boy",
@@ -49,117 +72,53 @@ namespace ComboBoxWPF
                 "Baby -> boy",
                 "Baby -> girl"
             };
-            if (obj.Contains("Him"))
+            if (obj.Contains("Him") || obj.Contains("Her"))
             {
-                ocassionCategory1 = new List<string>
+                ocassionCategory = new List<string>
                 {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
+                    "Show All",
+                    "Birthday",
+                    "Anniversary",
+                    "Wedding",
+                    "Sports fan",
+                    "Graduation"
                 };
             }
-            else if (obj.Contains("Her"))
+            else if (obj.Contains("Teen -> boy") || obj.Contains("Teen -> girl"))
             {
-                ocassionCategory1 = new List<string>
+                ocassionCategory = new List<string>
                 {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
+                    "Show All",
+                    "Birthday",
+                    "Anniversary",
+                    "Wedding",
+                    "Sports fan",
+                    "Graduation"
                 };
             }
-            else if (obj.Contains("Teen -> boy"))
+            else if (obj.Contains("Kids -> boy") || obj.Contains("Kids -> girl"))                                 
             {
-                ocassionCategory1 = new List<string>
+                ocassionCategory = new List<string>
                 {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
+                    "Show All",
+                    "Birthday",
+                    "Sports",
+                    "Kids Toys"
                 };
             }
-            else if (obj.Contains("Teen -> girl"))
+            else if (obj.Contains("Baby -> boy") || obj.Contains("Baby->girl"))  
             {
-                ocassionCategory1 = new List<string>
+                ocassionCategory = new List<string>
                 {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
-                };
-            }
-            else if (obj.Contains("Kids -> boy"))
-            {
-                ocassionCategory1 = new List<string>
-                {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
-                };
-            }
-            else if (obj.Contains("Kids -> girl"))
-            {
-                ocassionCategory1 = new List<string>
-                {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
-                };
-            }
-            else if (obj.Contains("Baby -> boy"))
-            {
-                ocassionCategory1 = new List<string>
-                {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
+                    "Show All",
+                    "Birthday",
+                    "New Baby Gifts",
+                    "Baby Shower"
                 };
             }
             else
             {
-                ocassionCategory1 = new List<string>
-                {
-                    "Him",
-                    "Her",
-                    "Teen -> boy",
-                    "Teen -> girl",
-                    "Kids -> boy",
-                    "Kids -> girl",
-                    "Baby -> boy",
-                    "Baby -> girl"
-                };
+                ocassionCategory = new List<string> { };
             }
         }
     }
